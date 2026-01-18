@@ -78,17 +78,6 @@ export default function ExplorePage() {
           >
             <BookOpen className="h-4 w-4" /> Learning
           </Button>
-          <div className="w-px h-8 bg-border mx-2" />
-          {["Tech", "Design", "Language", "Music", "Business"].map(cat => (
-             <Button
-               key={cat}
-               variant={category === cat ? "secondary" : "ghost"}
-               onClick={() => setCategory(category === cat ? undefined : cat)}
-               className="rounded-full font-normal"
-             >
-               {cat}
-             </Button>
-          ))}
         </div>
 
         {/* Grid */}
