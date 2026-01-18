@@ -134,7 +134,13 @@ function SkillCard({ skill }: { skill: Skill & { user: any } }) {
   };
 
   return (
-    <Card className="group hover:shadow-xl transition-all duration-300 border-border/60 hover:border-primary/50 overflow-hidden flex flex-col h-full">
+    <Card className="group hover:shadow-xl transition-all duration-300 border-border/60 hover:border-primary/50 overflow-hidden flex flex-col h-full relative">
+      <Badge 
+        variant="outline" 
+        className="absolute top-3 right-3 z-10 bg-background/80 backdrop-blur-sm text-muted-foreground font-medium shadow-sm border-primary/20"
+      >
+        {skill.category}
+      </Badge>
       <CardHeader className="p-6 pb-4">
         <div className="flex justify-between items-start mb-4">
           <Badge 
@@ -142,9 +148,6 @@ function SkillCard({ skill }: { skill: Skill & { user: any } }) {
             className="rounded-md px-3 py-1 font-semibold"
           >
             {skill.type === 'teach' ? "Teaching" : "Wants to Learn"}
-          </Badge>
-          <Badge variant="outline" className="text-muted-foreground font-normal">
-            {skill.category}
           </Badge>
         </div>
         <h3 className="text-xl font-bold line-clamp-1 group-hover:text-primary transition-colors">{skill.title}</h3>

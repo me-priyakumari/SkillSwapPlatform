@@ -124,12 +124,13 @@ export async function registerRoutes(
 async function seedDatabase() {
   const existingUsers = await storage.getUserByUsername("demo");
   if (!existingUsers) {
-    const categories = ["Tech", "Design", "Language", "Music"];
+    const categories = ["Tech", "Design", "Language", "Music", "Business"];
     const avatars = [
       "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix",
       "https://api.dicebear.com/7.x/avataaars/svg?seed=Aria",
       "https://api.dicebear.com/7.x/avataaars/svg?seed=Milo",
-      "https://api.dicebear.com/7.x/avataaars/svg?seed=Luna"
+      "https://api.dicebear.com/7.x/avataaars/svg?seed=Luna",
+      "https://api.dicebear.com/7.x/avataaars/svg?seed=Silas"
     ];
 
     // Create a demo user for each category
@@ -146,7 +147,7 @@ async function seedDatabase() {
         avatarUrl: avatars[i],
       });
 
-      // Add a 'teach' skill for this category
+      // Add skills for this category (mixed teach/learn)
       await storage.createSkill({
         userId: user.id,
         title: `${category} Mastery`,
@@ -155,7 +156,6 @@ async function seedDatabase() {
         type: "teach",
       });
 
-      // Add a 'learn' skill for this category
       await storage.createSkill({
         userId: user.id,
         title: `Advanced ${category}`,
@@ -165,7 +165,7 @@ async function seedDatabase() {
       });
     }
 
-    // Legacy demo user for backward compatibility if needed
+    // Legacy demo user for backward compatibility
     await storage.createUser({
       username: "demo",
       password: "password",
