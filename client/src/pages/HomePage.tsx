@@ -9,33 +9,27 @@ export default function HomePage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative pt-20 pb-32 md:pt-32 md:pb-48 overflow-hidden">
-        {/* Background Gradients */}
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
-
+      <section className="relative pt-20 pb-32 md:pt-32 md:pb-48 overflow-hidden bg-[#fdfaf7]">
         <div className="container mx-auto px-4 relative z-10 text-center">
-          <div className="inline-block mb-6 px-4 py-1.5 rounded-full bg-secondary/50 border border-secondary text-sm font-medium text-primary animate-fade-in-up">
-            🚀 The #1 Skill Exchange Community
+          <div className="inline-block mb-6 px-4 py-1.5 rounded-full bg-[#f4ece4] border border-[#e8d5c4] text-sm font-medium text-[#8c4a32] animate-fade-in-up">
+            🌱 A Human-to-Human Exchange
           </div>
-          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent animate-fade-in-up [animation-delay:100ms]">
-            Teach what you know. <br />
-            <span className="text-primary">Learn what you don't.</span>
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-[#2d241e] animate-fade-in-up [animation-delay:100ms]">
+            Master a craft. <br />
+            <span className="text-[#a65d43]">By connecting with people.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in-up [animation-delay:200ms]">
-            Connect with experts in coding, design, languages, and more. Exchange your skills for theirs—completely free.
+          <p className="text-lg md:text-xl text-[#5c4d44] max-w-2xl mx-auto mb-10 animate-fade-in-up [animation-delay:200ms] leading-relaxed">
+            Skip the algorithms. Swap your expertise in design, coding, or music for something new. Built for creators who value authentic mentorship.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in-up [animation-delay:300ms]">
             <Link href="/explore">
-              <Button size="lg" className="w-full sm:w-auto px-8 h-12 text-lg rounded-xl shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all hover:-translate-y-1">
-                Explore Skills
+              <Button size="lg" className="w-full sm:w-auto px-10 h-14 text-lg rounded-full bg-[#a65d43] hover:bg-[#8c4a32] transition-colors">
+                Find a Mentor
               </Button>
             </Link>
             <Link href="/auth?tab=register">
-              <Button size="lg" variant="outline" className="w-full sm:w-auto px-8 h-12 text-lg rounded-xl border-2 hover:bg-secondary/50 transition-all">
-                Get Started
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <Button size="lg" variant="outline" className="w-full sm:w-auto px-10 h-14 text-lg rounded-full border-2 border-[#e8d5c4] text-[#5c4d44] hover:bg-[#f4ece4] transition-colors">
+                Join the Community
               </Button>
             </Link>
           </div>

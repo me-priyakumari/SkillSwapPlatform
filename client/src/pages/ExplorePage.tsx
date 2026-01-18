@@ -123,10 +123,10 @@ function SkillCard({ skill }: { skill: Skill & { user: any } }) {
   };
 
   return (
-    <Card className="group hover:shadow-xl transition-all duration-300 border-border/60 hover:border-primary/50 overflow-hidden flex flex-col h-full relative">
+    <Card className="group border-border/80 bg-white hover:border-primary/30 transition-all duration-200 rounded-lg overflow-hidden flex flex-col h-full relative shadow-sm hover:shadow-md">
       <Badge 
         variant="outline" 
-        className="absolute top-3 right-3 z-10 bg-background/80 backdrop-blur-sm text-muted-foreground font-medium shadow-sm border-primary/20"
+        className="absolute top-4 right-4 z-10 bg-white/90 text-[#5c4d44] font-medium border-[#e8d5c4]"
       >
         {skill.category}
       </Badge>
@@ -134,12 +134,12 @@ function SkillCard({ skill }: { skill: Skill & { user: any } }) {
         <div className="flex justify-between items-start mb-4">
           <Badge 
             variant={skill.type === 'teach' ? "default" : "secondary"} 
-            className="rounded-md px-3 py-1 font-semibold"
+            className="rounded-sm px-2 py-0.5 text-xs font-medium uppercase tracking-wider"
           >
-            {skill.type === 'teach' ? "Teaching" : "Wants to Learn"}
+            {skill.type === 'teach' ? "Offering" : "Seeking"}
           </Badge>
         </div>
-        <h3 className="text-xl font-bold line-clamp-1 group-hover:text-primary transition-colors">{skill.title}</h3>
+        <h3 className="text-lg font-bold text-[#2d241e] group-hover:text-primary transition-colors leading-tight">{skill.title}</h3>
       </CardHeader>
       
       <CardContent className="px-6 py-0 flex-1">
