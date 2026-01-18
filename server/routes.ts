@@ -122,58 +122,6 @@ export async function registerRoutes(
 }
 
 async function seedDatabase() {
-  const existingUsers = await storage.getUserByUsername("demo");
-  if (!existingUsers) {
-    const categories = ["Tech", "Design", "Language", "Music", "Business"];
-    const avatars = [
-      "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix",
-      "https://api.dicebear.com/7.x/avataaars/svg?seed=Aria",
-      "https://api.dicebear.com/7.x/avataaars/svg?seed=Milo",
-      "https://api.dicebear.com/7.x/avataaars/svg?seed=Luna",
-      "https://api.dicebear.com/7.x/avataaars/svg?seed=Silas"
-    ];
-
-    // Create a demo user for each category
-    for (let i = 0; i < categories.length; i++) {
-      const category = categories[i];
-      const username = `demo_${category.toLowerCase()}`;
-      const user = await storage.createUser({
-        username,
-        password: "password",
-        name: `${category} Expert`,
-        bio: `I am an expert in ${category} and I love sharing my knowledge with others.`,
-        location: "Global",
-        availability: "Flexible",
-        avatarUrl: avatars[i],
-      });
-
-      // Add skills for this category (mixed teach/learn)
-      await storage.createSkill({
-        userId: user.id,
-        title: `${category} Mastery`,
-        description: `Deep dive into ${category} principles and advanced techniques.`,
-        category,
-        type: "teach",
-      });
-
-      await storage.createSkill({
-        userId: user.id,
-        title: `Advanced ${category}`,
-        description: `Looking to improve my skills in specialized areas of ${category}.`,
-        category,
-        type: "learn",
-      });
-    }
-
-    // Legacy demo user for backward compatibility
-    await storage.createUser({
-      username: "demo",
-      password: "password",
-      name: "Demo User",
-      bio: "I love learning and teaching!",
-      location: "New York",
-      availability: "Weekends",
-      avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=demo",
-    });
-  }
+  // Database seeded via SQL tool
+  return;
 }
