@@ -124,7 +124,49 @@ export async function registerRoutes(
 async function seedDatabase() {
   const existingUsers = await storage.getUserByUsername("demo");
   if (!existingUsers) {
-    const demoUser = await storage.createUser({
+    const categories = ["Tech", "Design", "Language", "Music"];
+    const avatars = [
+      "https://api.dicebear.com/7.x/avataaars/svg?seed=Felix",
+      "https://api.dicebear.com/7.x/avataaars/svg?seed=Aria",
+      "https://api.dicebear.com/7.x/avataaars/svg?seed=Milo",
+      "https://api.dicebear.com/7.x/avataaars/svg?seed=Luna"
+    ];
+
+    // Create a demo user for each category
+    for (let i = 0; i < categories.length; i++) {
+      const category = categories[i];
+      const username = `demo_${category.toLowerCase()}`;
+      const user = await storage.createUser({
+        username,
+        password: "password",
+        name: `${category} Expert`,
+        bio: `I am an expert in ${category} and I love sharing my knowledge with others.`,
+        location: "Global",
+        availability: "Flexible",
+        avatarUrl: avatars[i],
+      });
+
+      // Add a 'teach' skill for this category
+      await storage.createSkill({
+        userId: user.id,
+        title: `${category} Mastery`,
+        description: `Deep dive into ${category} principles and advanced techniques.`,
+        category,
+        type: "teach",
+      });
+
+      // Add a 'learn' skill for this category
+      await storage.createSkill({
+        userId: user.id,
+        title: `Advanced ${category}`,
+        description: `Looking to improve my skills in specialized areas of ${category}.`,
+        category,
+        type: "learn",
+      });
+    }
+
+    // Legacy demo user for backward compatibility if needed
+    await storage.createUser({
       username: "demo",
       password: "password",
       name: "Demo User",
@@ -132,22 +174,6 @@ async function seedDatabase() {
       location: "New York",
       availability: "Weekends",
       avatarUrl: "https://api.dicebear.com/7.x/avataaars/svg?seed=demo",
-    });
-    
-    await storage.createSkill({
-      userId: demoUser.id,
-      title: "React Development",
-      description: "I can teach you React from scratch.",
-      category: "Tech",
-      type: "teach",
-    });
-
-     await storage.createSkill({
-      userId: demoUser.id,
-      title: "Spanish Basics",
-      description: "Looking to learn basic Spanish conversation.",
-      category: "Language",
-      type: "learn",
     });
   }
 }
