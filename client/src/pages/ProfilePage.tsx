@@ -86,12 +86,22 @@ export default function ProfilePage() {
           {/* Main Content */}
           <div className="flex-1 space-y-6 w-full">
             <Tabs defaultValue="skills">
-              <TabsList className="w-full justify-start h-12 bg-transparent border-b border-border rounded-none p-0 mb-6 gap-6">
-                <TabsTrigger value="skills" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-0 font-semibold text-base">Skills</TabsTrigger>
-                <TabsTrigger value="reviews" className="rounded-none border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent px-0 font-semibold text-base">Reviews</TabsTrigger>
+              <TabsList className="w-full justify-start h-14 bg-white/40 backdrop-blur-sm border border-white/20 rounded-xl p-1.5 mb-8 gap-2 shadow-inner">
+                <TabsTrigger 
+                  value="skills" 
+                  className="flex-1 md:flex-none rounded-lg px-8 py-2 font-bold text-base transition-all data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm hover:text-primary/70"
+                >
+                  Skills
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="reviews" 
+                  className="flex-1 md:flex-none rounded-lg px-8 py-2 font-bold text-base transition-all data-[state=active]:bg-white data-[state=active]:text-primary data-[state=active]:shadow-sm hover:text-primary/70"
+                >
+                  Reviews
+                </TabsTrigger>
               </TabsList>
 
-              <TabsContent value="skills" className="space-y-6 animate-in fade-in slide-in-from-bottom-2">
+              <TabsContent value="skills" className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
                 <div className="flex justify-between items-center">
                    <h2 className="text-xl font-bold">Skills Offered & Wanted</h2>
                    {isOwnProfile && <AddSkillDialog />}
