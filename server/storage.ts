@@ -9,10 +9,7 @@ import {
   type Review, type InsertReview
 } from "@shared/schema";
 import session from "express-session";
-import PgSession from "connect-pg-simple";
-import { Pool } from "pg";
-
-const PostgresSessionStore = PgSession(session);
+import SQLiteStore from "connect-sqlite3";
 
 export interface IStorage {
   // Auth & User
@@ -46,11 +43,10 @@ export class DatabaseStorage implements IStorage {
   sessionStore: session.Store;
 
   constructor() {
-    const pool = new Pool();
-    this.sessionStore = new PostgresSessionStore({ 
-      pool, 
-      createTableIfMissing: true 
-    }) as session.Store;
+    this.sessionStore = new (SQLiteStore(session))({
+      db: "sessions.db",
+      dir: ".",
+    });
   }
 
   // User
