@@ -29,7 +29,7 @@ export function setupAuth(app: Express) {
     saveUninitialized: false,
     store: storage.sessionStore,
     cookie: {
-      secure: app.get("env") === "production" && req.header('x-forwarded-proto') === 'https',
+      secure: false, // Render handles SSL termination, so secure should be false
       sameSite: "lax",
       maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
       httpOnly: true,
