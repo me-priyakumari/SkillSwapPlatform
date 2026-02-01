@@ -43,9 +43,8 @@ export class DatabaseStorage implements IStorage {
   sessionStore: session.Store;
 
   constructor() {
-    this.sessionStore = new (SQLiteStore(session))({
-      db: "sessions.db",
-      dir: ".",
+    this.sessionStore = new (MemoryStore(session))({
+      checkPeriod: 86400000, // prune expired entries every 24h
     });
   }
 
