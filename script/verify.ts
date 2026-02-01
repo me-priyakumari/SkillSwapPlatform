@@ -26,5 +26,4 @@ async function verify() {
     console.log(`- ${skill.title} (${skill.category}, ${skill.type}) by ${user.name}`);
   });
 }
-
 verify().catch(console.error);
