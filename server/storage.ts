@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { eq, or, and, desc } from "drizzle-orm";
+import { eq, or, and } from "drizzle-orm";
 import {
   users, skills, swapRequests, messages, reviews,
   type User, type InsertUser,
@@ -9,7 +9,6 @@ import {
   type Review, type InsertReview
 } from "@shared/schema";
 import session from "express-session";
-import SQLiteStore from "connect-sqlite3";
 import PgSession from "connect-pg-simple";
 import { Pool } from "pg";
 
