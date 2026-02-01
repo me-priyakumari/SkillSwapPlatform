@@ -1,9 +1,9 @@
-import { pgTable, text, serial, integer, boolean, timestamp } from "drizzle-orm/pg-core";
+import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
-  id: serial("id").primaryKey(),
+export const users = sqliteTable("users", {
+  id: integer("id", { mode: 'number' }).primaryKey({ autoIncrement: true }),
   username: text("username").notNull().unique(), // This will be the email
   password: text("password").notNull(),
   name: text("name").notNull(),
@@ -13,40 +13,40 @@ export const users = pgTable("users", {
   avatarUrl: text("avatar_url"),
 });
 
-export const skills = pgTable("skills", {
-  id: serial("id").primaryKey(),
-  userId: integer("user_id").notNull(),
+export const skills = sqliteTable("skills", {
+  id: integer("id", { mode: 'number' }).primaryKey({ autoIncrement: true }),
+  userId: integer("user_id", { mode: 'number' }).notNull(),
   title: text("title").notNull(),
   description: text("description").notNull(),
   category: text("category").notNull(), // Tech, Design, Language, Music
   type: text("type").notNull(), // 'teach' or 'learn'
 });
 
-export const swapRequests = pgTable("swap_requests", {
-  id: serial("id").primaryKey(),
-  senderId: integer("sender_id").notNull(),
-  receiverId: integer("receiver_id").notNull(),
-  skillId: integer("skill_id").notNull(), // The skill originally requested
+export const swapRequests = sqliteTable("swap_requests", {
+  id: integer("id", { mode: 'number' }).primaryKey({ autoIncrement: true }),
+  senderId: integer("sender_id", { mode: 'number' }).notNull(),
+  receiverId: integer("receiver_id", { mode: 'number' }).notNull(),
+  skillId: integer("skill_id", { mode: 'number' }).notNull(), // The skill originally requested
   status: text("status").notNull().default("pending"), // pending, accepted, rejected
   message: text("message"),
-  createdAt: timestamp("created_at").defaultNow(),
+  createdAt: integer("created_at", { mode: 'timestamp_ms' }).$defaultFn(() => new Date()),
 });
 
-export const messages = pgTable("messages", {
-  id: serial("id").primaryKey(),
-  senderId: integer("sender_id").notNull(),
-  receiverId: integer("receiver_id").notNull(),
+export const messages = sqliteTable("messages", {
+  id: integer("id", { mode: 'number' }).primaryKey({ autoIncrement: true }),
+  senderId: integer("sender_id", { mode: 'number' }).notNull(),
+  receiverId: integer("receiver_id", { mode: 'number' }).notNull(),
   content: text("content").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
+  createdAt: integer("created_at", { mode: 'timestamp_ms' }).$defaultFn(() => new Date()),
 });
 
-export const reviews = pgTable("reviews", {
-  id: serial("id").primaryKey(),
-  authorId: integer("author_id").notNull(),
-  targetId: integer("target_id").notNull(),
-  rating: integer("rating").notNull(),
+export const reviews = sqliteTable("reviews", {
+  id: integer("id", { mode: 'number' }).primaryKey({ autoIncrement: true }),
+  authorId: integer("author_id", { mode: 'number' }).notNull(),
+  targetId: integer("target_id", { mode: 'number' }).notNull(),
+  rating: integer("rating", { mode: 'number' }).notNull(),
   feedback: text("feedback").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
+  createdAt: integer("created_at", { mode: 'timestamp_ms' }).$defaultFn(() => new Date()),
 });
 
 // Schemas

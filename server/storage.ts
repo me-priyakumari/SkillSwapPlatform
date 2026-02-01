@@ -10,6 +10,10 @@ import {
 } from "@shared/schema";
 import session from "express-session";
 import SQLiteStore from "connect-sqlite3";
+import PgSession from "connect-pg-simple";
+import { Pool } from "pg";
+
+const PostgresSessionStore = PgSession(session);
 
 export interface IStorage {
   // Auth & User
@@ -43,10 +47,11 @@ export class DatabaseStorage implements IStorage {
   sessionStore: session.Store;
 
   constructor() {
+    const pool = new Pool();
     this.sessionStore = new PostgresSessionStore({ 
       pool, 
       createTableIfMissing: true 
-    });
+    }) as session.Store;
   }
 
   // User
