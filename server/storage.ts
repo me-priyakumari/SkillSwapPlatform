@@ -9,7 +9,7 @@ import {
   type Review, type InsertReview
 } from "@shared/schema";
 import session from "express-session";
-import SQLiteStore from "connect-sqlite3";
+import MemoryStore from "memorystore";
 
 export interface IStorage {
   // Auth & User
