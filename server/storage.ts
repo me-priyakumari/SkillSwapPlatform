@@ -1,18 +1,15 @@
 import { db } from "./db";
 import { eq, or, and, desc } from "drizzle-orm";
-import { 
+import {
   users, skills, swapRequests, messages, reviews,
-  type User, type InsertUser, 
-  type Skill, type InsertSkill, 
+  type User, type InsertUser,
+  type Skill, type InsertSkill,
   type SwapRequest, type InsertRequest,
   type Message, type InsertMessage,
   type Review, type InsertReview
 } from "@shared/schema";
 import session from "express-session";
-import connectPg from "connect-pg-simple";
-import { pool } from "./db";
-
-const PostgresSessionStore = connectPg(session);
+import SQLiteStore from "connect-sqlite3";
 
 export interface IStorage {
   // Auth & User
