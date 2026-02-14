@@ -24,6 +24,6 @@ async function verify() {
   console.log("Skills:");
   allSkills.forEach(({ skill, user }) => {
     console.log(`- ${skill.title} (${skill.category}, ${skill.type}) by ${user.name}`);
-  });
+  });                                                         
 }
 verify().catch(console.error);
